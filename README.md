@@ -16,7 +16,7 @@ Installation
 Execute this command to install the project:
 
 ```bash
-cd url-shortener/
+$ cd url-shortener/
 $ composer install
 ```
 
