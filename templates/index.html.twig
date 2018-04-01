@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="example-wrapper">
+
+        {% for message in app.flashes('error') %}
+            <div class="flash-notice alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {{ form_start(url_form) }}
+        {{ form_widget(url_form) }}
+
+        <div class="form-group">
+            <div class="col-sm-2">
+                <input type="submit" value="Shorten" class="btn btn-success">
+            </div>
+        </div>
+
+        {{ form_end(url_form) }}
+
+    </div>
+
+    {% if short_url != '' %}
+
+        <div class="short-url-block-info alert alert-success" role="alert">
+            <h4 class="alert-heading url"><a href="{{ short_url }}" target="_blank">{{ short_url }}</a> <a
+                        href="{{ short_url }}" target="_blank"><i class="material-icons md-36">open_in_new</i></a></h4>
+            <p>Please keep in mind that all short generated URLs are public and can be accessed by anyone</p>
+            <hr>
+            <p class="original-url mb-0">Original URL: <a href="{{ original_url }}" target="_blank">{{ original_url_formatted }}</a></p>
+        </div>
+
+    {% endif %}
+
+{% endblock %}
