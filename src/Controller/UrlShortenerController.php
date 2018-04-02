@@ -23,7 +23,6 @@ class UrlShortenerController extends AbstractController
      */
     private $originalUrl = '';
 
-
     /**
      * @var string
      */
