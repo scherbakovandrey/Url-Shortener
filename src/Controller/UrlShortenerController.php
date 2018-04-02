@@ -79,6 +79,7 @@ class UrlShortenerController extends AbstractController
         return false;
     }
 
+    // we generate the key and if the key is already exists in the database we re-generate the new one
     private function generateKey() : string
     {
         $key = '';
