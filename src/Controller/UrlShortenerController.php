@@ -47,7 +47,7 @@ class UrlShortenerController extends AbstractController
                 // if the url already exists in the database - we use the key for it
                 // otherwise we generate the new key and add new record
                 if ( ! $this->isUrlAlreadyExists() ) {
-                    $this->key = KeyGenerator::generate();
+                    $this->key = $this->generateKey();
                     $this->addNewUrl();
                 }
 
@@ -74,6 +74,29 @@ class UrlShortenerController extends AbstractController
         );
         if ($url) {
             $this->key = $url->getKey();
+            return true;
+        }
+        return false;
+    }
+
+    private function generateKey() : string
+    {
+        $key = '';
+        $isKeyAlreadyExists = true;
+        while ($isKeyAlreadyExists) {
+            $key = KeyGenerator::generate();
+            $isKeyAlreadyExists = $this->isKeyAlreadyExists($key);
+        }
+        return $key;
+    }
+
+    private function isKeyAlreadyExists($key) : bool
+    {
+        $repository = $this->getDoctrine()->getRepository(Url::class);
+        $url = $repository->findOneBy(
+            ['key' => $key]
+        );
+        if ($url) {
             return true;
         }
         return false;
