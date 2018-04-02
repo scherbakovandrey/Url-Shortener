@@ -13,7 +13,7 @@ Requirements
 Installation
 ------------
 
-Execute this command to install the project:
+Execute these commands to install the project:
 
 ```bash
 $ cd url-shortener/
@@ -33,7 +33,7 @@ $ php bin/console server:run
 Tests
 -----
 
-Execute this command to run tests:
+Execute these commands to run tests:
 
 ```bash
 $ cd url-shortener/
